@@ -27,7 +27,6 @@ const cardArray = [
 cardArray.sort(() => 0.5 - Math.random())
 
 const gridDisplay = document.querySelector('#grid')
-//const cards = document.querySelectorAll('#grid img')
 
 let flippedCards = []
 let flippedCardsIds = []
@@ -39,7 +38,6 @@ function flipCard(cardId, name) {
     flippedCardsIds.push(cardId)
     flippedCards.push(name)
     flippedCount++
-    console.log('flip card: ', cardId, name, flippedCount)
 }
 
 function unflipAll() {
@@ -91,12 +89,7 @@ function countFlipped() {
 function checkMatch() {
     const cards = document.querySelectorAll('#grid img')
     const result = document.querySelector('#result')
-    cards.forEach(card => {
-        const image = card.getAttribute('src')
-        if (image != 'images/white.png') {
-            card.addEventListener('click', clickOnCard)
-        }
-    })
+    
     if (isMatch()) {
         alert('You found a match!')
         flippedCardsIds.forEach(id => {
@@ -114,7 +107,13 @@ function checkMatch() {
         unflipAll()
         score--
         result.innerHTML = score
-    }    
+    }
+    cards.forEach(card => {
+        const image = card.getAttribute('src')
+        if (image != 'images/white.png') {
+            card.addEventListener('click', clickOnCard)
+        }
+    })    
 }
 
 createBoard()
